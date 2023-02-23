@@ -1,21 +1,28 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import {COLORS, FONTS, icons, SIZES} from '../../constants';
+import {COLORS, FONTS, SIZES} from '../../constants';
+import Scale from '../../constants/Scale';
 
 type HeaderProps = {
   leftIcon: any;
   rightIcon: any;
   headerText?: string;
   leftPress?: Function;
+  rightPress?: Function;
 };
 
-export const Header = ({ leftIcon, rightIcon, headerText, leftPress }: HeaderProps) => (
+export const Header = ({
+  leftIcon,
+  rightIcon,
+  headerText,
+  leftPress,
+  rightPress,
+}: HeaderProps) => (
   <>
     <View style={styles.headerContainer}>
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.headerImageContainer}
-        onPress={() => !!leftPress && leftPress()}
-      >
+        onPress={() => !!leftPress && leftPress()}>
         <Image
           source={leftIcon}
           resizeMode="contain"
@@ -29,7 +36,9 @@ export const Header = ({ leftIcon, rightIcon, headerText, leftPress }: HeaderPro
         </View>
       </View>
 
-      <TouchableOpacity style={styles.headerRightImageContainer}>
+      <TouchableOpacity
+        style={styles.headerRightImageContainer}
+        onPress={() => !!rightPress && rightPress()}>
         <Image
           source={rightIcon}
           resizeMode="contain"
@@ -44,6 +53,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     height: 50,
+    marginVertical: 10,
   },
   headerImageContainer: {
     width: 50,
@@ -51,8 +61,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerImage: {
-    width: 30,
-    height: 30,
+    width: Scale(25),
+    height: Scale(25),
   },
   headerLocationContainer: {
     flex: 1,

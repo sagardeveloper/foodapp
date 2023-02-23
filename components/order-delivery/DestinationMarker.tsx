@@ -1,20 +1,17 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-import { LatLng, Marker } from 'react-native-maps';
-import { COLORS, icons } from '../../constants';
+import {Image, StyleSheet, View} from 'react-native';
+import {LatLng, Marker} from 'react-native-maps';
+import {COLORS, icons} from '../../constants';
 
 type DestinationMarkerProps = {
   coordinate: LatLng;
-}
+};
 
-export const DestinationMarker = ({ coordinate }: DestinationMarkerProps) => (
+export const DestinationMarker = ({coordinate}: DestinationMarkerProps) => (
   <Marker coordinate={coordinate}>
     <View style={styles.markerContainer}>
       <View style={styles.markerImageContainer}>
-        <Image
-          source={icons.pin}
-          style={styles.markerImage}
-        />
+        <Image source={icons.pin} style={styles.markerImage} />
       </View>
     </View>
   </Marker>
@@ -40,5 +37,5 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     tintColor: COLORS.white,
-  }
+  },
 });

@@ -1,22 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { AppStyles } from '../../AppStyles';
-import { COLORS, FONTS, SIZES } from '../../constants';
-import { OrderItem } from '../../types';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {AppStyles} from '../../AppStyles';
+import {COLORS, FONTS, SIZES} from '../../constants';
+import {OrderItem} from '../../types';
 
 type RestaurantOrderProps = {
   onEdit: (e: '+' | '-') => void;
   quantity: number;
 };
 
-
-export const RestaurantFoodQuantity = ({ onEdit, quantity }: RestaurantOrderProps) => {
+export const RestaurantFoodQuantity = ({
+  onEdit,
+  quantity,
+}: RestaurantOrderProps) => {
   return (
     <View style={styles.quantityContainer}>
       <TouchableOpacity
         style={styles.quantityButton}
-        onPress={() => onEdit('-')}
-      >
+        onPress={() => onEdit('-')}>
         <Text style={{...FONTS.body1}}>-</Text>
       </TouchableOpacity>
       <View style={styles.quantityText}>
@@ -27,8 +28,7 @@ export const RestaurantFoodQuantity = ({ onEdit, quantity }: RestaurantOrderProp
           ...styles.quantityButton,
           ...styles.quantityAddButton,
         }}
-        onPress={() => onEdit('+')}
-      >
+        onPress={() => onEdit('+')}>
         <Text style={{...FONTS.body1}}>+</Text>
       </TouchableOpacity>
     </View>

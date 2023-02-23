@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { COLORS, FONTS, icons, SIZES } from '../../constants';
+import {StyleSheet, Platform, View, Text, Image} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {COLORS, FONTS, icons, SIZES} from '../../constants';
+import Scale from '../../constants/Scale';
 
 type RestaurantOrderSectionProps = {
   basketCount: number;
@@ -38,9 +39,9 @@ export const RestaurantOrderSection = ({
       {/* Order Button */}
       <View style={styles.orderButtonContainer}>
         <TouchableOpacity
-          style={{ 
+          style={{
             ...styles.orderButton,
-            ...total <= 0 ? styles.disabledOrderButton : { }
+            ...(total <= 0 ? styles.disabledOrderButton : {}),
           }}
           disabled={total <= 0}
           onPress={() => placeOrder()}>
@@ -53,9 +54,10 @@ export const RestaurantOrderSection = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.white,
+    backgroundColor: 'white',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
+    height: Scale(230),
   },
   amountDetailsContainer: {
     flexDirection: 'row',
@@ -87,12 +89,12 @@ const styles = StyleSheet.create({
   },
   orderButton: {
     width: SIZES.width * 0.85,
-    height: 60,
+    height: Platform.OS === 'android' ? Scale(50) : Scale(60),
     padding: SIZES.padding,
     backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: SIZES.radius / 1.5,
+    borderRadius: Platform.OS === 'android' ? Scale(15) : Scale(15),
   },
   disabledOrderButton: {
     backgroundColor: COLORS.secondary,

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet, View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { COLORS, FONTS, icons, SIZES } from '../../constants';
-import { Restaurant } from '../../types';
+import {Image, StyleSheet, View, Text} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {COLORS, FONTS, icons, SIZES} from '../../constants';
+import {Restaurant} from '../../types';
 
 type OrderDeliveryInfoProps = {
   restaurant: Restaurant | null;
@@ -10,7 +10,11 @@ type OrderDeliveryInfoProps = {
   onMessage: () => void;
 };
 
-export const OrderDeliveryInfo = ({ restaurant, onCall, onMessage }: OrderDeliveryInfoProps) => (
+export const OrderDeliveryInfo = ({
+  restaurant,
+  onCall,
+  onMessage,
+}: OrderDeliveryInfoProps) => (
   <View style={styles.container}>
     <View style={styles.infoContainer}>
       <View style={styles.topInfoWrapper}>
@@ -29,15 +33,12 @@ export const OrderDeliveryInfo = ({ restaurant, onCall, onMessage }: OrderDelive
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={() => onCall()}>
+        <TouchableOpacity style={styles.button} onPress={() => onCall()}>
           <Text style={styles.buttonText}>Call</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={{...styles.button, ...styles.messageButton}}
-          onPress={() => onMessage()} 
-        >
+          onPress={() => onMessage()}>
           <Text style={styles.buttonText}>Message</Text>
         </TouchableOpacity>
       </View>

@@ -1,13 +1,8 @@
 import React from 'react';
-import { 
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
-import { FONTS, SIZES } from '../../constants';
-import { CategoryData } from '../../types';
-import { HomeMainCategoryItem } from './HomeMainCategoryItem';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {FONTS, SIZES} from '../../constants';
+import {CategoryData} from '../../types';
+import {HomeMainCategoryItem} from './HomeMainCategoryItem';
 
 type HomeMainCategoriesProps = {
   categories: CategoryData[];
@@ -15,8 +10,14 @@ type HomeMainCategoriesProps = {
   onSelectCategory: (item: CategoryData) => void;
 };
 
-export const HomeMainCategories = ({ categories, selectedCategory, onSelectCategory }: HomeMainCategoriesProps) => {
-  function renderItem({ item }: { item: CategoryData }) {
+export const HomeMainCategories = ({
+  categories,
+  selectedCategory,
+  onSelectCategory,
+}: HomeMainCategoriesProps) => {
+  //
+
+  function renderItem({item}: {item: CategoryData}) {
     return (
       <HomeMainCategoryItem
         item={item}
@@ -28,9 +29,7 @@ export const HomeMainCategories = ({ categories, selectedCategory, onSelectCateg
 
   return (
     <View style={styles.container}>
-      <Text style={{...FONTS.h1}}>Main</Text>
-      <Text style={{...FONTS.h1}}>Categories</Text>
-
+      <Text style={{...FONTS.body1}}>Main Categories</Text>
       <FlatList
         data={categories}
         horizontal
@@ -49,5 +48,5 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     paddingVertical: SIZES.padding * 2,
-  }
+  },
 });

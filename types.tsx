@@ -1,23 +1,33 @@
-import { LatLng } from 'react-native-maps';
-import { icons } from './constants';
+import {LatLng} from 'react-native-maps';
+import {icons} from './constants';
 
 export type RootTabParamList = {
   Home: undefined;
-  Restaurant: { item: Restaurant, currentLocation: CurrentLocation };
-  OrderDelivery: { restaurant: Restaurant | null, currentLocation: CurrentLocation | null };
+  Restaurant: {item: Restaurant; currentLocation: CurrentLocation};
+  OrderDelivery: {
+    restaurant: Restaurant | null;
+    currentLocation: CurrentLocation | null;
+  };
 };
 
 export interface ScreenTab {
   screenName: string;
   screenComponent: any;
   screenIcon: keyof typeof icons;
-};
+}
 
 export type CurrentLocation = {streetName: string; gps: LatLng};
 
 export type CategoryData = {id: number; name: string; icon: any};
 
 export type Courier = {avatar: any; name: string};
+export type ChefDetail = {
+  avatar: any;
+  name: string;
+  address: string;
+  review: string;
+  time: string;
+};
 
 export type Menu = {
   menuId: number;
@@ -40,6 +50,8 @@ export type Restaurant = {
   location: LatLng;
   courier: Courier;
   menu: Menu[];
+  isLiked: boolean;
+  chefDetail: ChefDetail;
 };
 
 export type OrderItem = {

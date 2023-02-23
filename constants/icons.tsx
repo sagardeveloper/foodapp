@@ -1,5 +1,5 @@
 export const back = require('../assets/icons/back.png');
-export const car = require('../assets/icons/car.png');
+export const car = require('../assets/icons/bike1.png');
 export const cutlery = require('../assets/icons/cutlery.png');
 export const donut = require('../assets/icons/donut.png');
 export const drink = require('../assets/icons/drink.png');
@@ -23,6 +23,7 @@ export const basket = require('../assets/icons/shopping-basket.png');
 export const star = require('../assets/icons/star.png');
 export const sushi = require('../assets/icons/sushi.png');
 export const user = require('../assets/icons/user.png');
+export const all = require('../assets/icons/all.png');
 
 export default {
   back,
@@ -50,4 +51,5 @@ export default {
   star,
   sushi,
   user,
+  all,
 };

@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
-import { COLORS, FONTS, icons, SIZES } from '../../constants';
+import {StyleSheet, View, Image, Text, TextInput} from 'react-native';
+import {COLORS, FONTS, icons, SIZES} from '../../constants';
+import Scale from '../../constants/Scale';
 
 type OrderDestinationHeaderProps = {
   streetName: string;
@@ -10,22 +11,41 @@ type OrderDestinationHeaderProps = {
 export const OrderDestinationHeader = ({
   streetName,
   duration,
-}: OrderDestinationHeaderProps) => (
-  <View style={styles.container}>
-    <View style={styles.contentWrapper}>
-      <Image source={icons.red_pin} style={styles.headerImage} />
-      <View style={styles.contentTextWrapper}>
-        <Text style={styles.contentText}>{streetName}</Text>
-        <Text style={styles.contentText}>{Math.ceil(duration)} mins</Text>
+}: OrderDestinationHeaderProps) => {
+  const [location, setLocation] = React.useState(
+    'Mile End Rd, Bethnal Green, London E1 4NS, United Kingdom',
+  );
+
+  const handleLocation = (text: 'string') => {
+    setLocation(text);
+  };
+  return (
+    <View style={styles.container}>
+      <View style={styles.contentWrapper}>
+        <Image source={icons.red_pin} style={styles.headerImage} />
+        <View style={styles.contentTextWrapper}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-end',
+
+              height: 38,
+            }}>
+            <TextInput
+              style={styles.contentText}
+              value={location}
+              onChangeText={(text: string) => handleLocation(text)}
+            />
+          </View>
+        </View>
       </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 50,
+    top: 10,
     left: 0,
     right: 0,
     height: 50,
@@ -46,14 +66,16 @@ const styles = StyleSheet.create({
     height: 30,
     marginRight: SIZES.padding / 2,
     position: 'relative',
-    left: -10
+    left: -10,
   },
   contentTextWrapper: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    // backgroundColor: 'pink',
   },
   contentText: {
-    ...FONTS.body3
-  }
+    ...FONTS.body3,
+    paddingLeft: Scale(0),
+  },
 });

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen } from '../screens';
-import { COLORS, icons } from '../constants';
-import { ScreenTab } from '../types';
-import { TabBarCustomButtonActive } from '../components/tabs/TabBarCustomButtonActive';
-import { TabBarCustomButton } from '../components/tabs/TabBarCustomButton';
-import { CustomTabBar } from '../components/tabs/CustomTabBar';
+import {Image, StyleSheet} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {HomeScreen, Orders, Like, Profile} from '../screens';
+import {COLORS, icons} from '../constants';
+import {ScreenTab} from '../types';
+import {TabBarCustomButtonActive} from '../components/tabs/TabBarCustomButtonActive';
+import {TabBarCustomButton} from '../components/tabs/TabBarCustomButton';
+import {CustomTabBar} from '../components/tabs/CustomTabBar';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,31 +17,30 @@ const screens: ScreenTab[] = [
     screenIcon: 'cutlery',
   },
   {
-    screenName: 'Search',
-    screenComponent: HomeScreen,
-    screenIcon: 'search',
+    screenName: 'Orders',
+    screenComponent: Orders,
+    screenIcon: 'basket',
   },
   {
     screenName: 'Like',
-    screenComponent: HomeScreen,
+    screenComponent: Like,
     screenIcon: 'like',
   },
   {
     screenName: 'User',
-    screenComponent: HomeScreen,
+    screenComponent: Profile,
     screenIcon: 'user',
   },
 ];
 
 export const Tabs = () => {
   return (
-    <Tab.Navigator 
+    <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
-        style: styles.tabBar
+        style: styles.tabBar,
       }}
-      tabBar={(props) => (<CustomTabBar {...props} />)}
-    >
+      tabBar={(props) => <CustomTabBar {...props} />}>
       {screens.map(({screenName, screenComponent, screenIcon}) => (
         <Tab.Screen
           key={`tab-${screenName}`}
@@ -49,21 +48,24 @@ export const Tabs = () => {
           component={screenComponent}
           options={{
             tabBarIcon: ({focused}) => (
-              <Image
-                source={icons[screenIcon]}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? COLORS.primary : COLORS.secondary,
-                }}
-              />
+              <>
+                <Image
+                  source={icons[screenIcon]}
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    height: 25,
+                    tintColor: focused ? COLORS.primary : COLORS.secondary,
+                  }}
+                />
+              </>
             ),
-            tabBarButton: ({accessibilityState, ...props}) => (
-              accessibilityState?.selected ? 
-                <TabBarCustomButtonActive {...props} /> :
+            tabBarButton: ({accessibilityState, ...props}) =>
+              accessibilityState?.selected ? (
+                <TabBarCustomButtonActive {...props} />
+              ) : (
                 <TabBarCustomButton {...props} />
-            )
+              ),
           }}
         />
       ))}
@@ -76,5 +78,5 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     backgroundColor: 'transparent',
     elevation: 0,
-  }
+  },
 });

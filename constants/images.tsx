@@ -3,6 +3,27 @@ const avatar_2 = require('../assets/images/avatar-2.jpg');
 const avatar_3 = require('../assets/images/avatar-3.jpg');
 const avatar_4 = require('../assets/images/avatar-4.jpg');
 const avatar_5 = require('../assets/images/avatar-5.jpg');
+const avatar_6 = require('../assets/images/avatar-6.png');
+const chef_1 = require('../assets/images/chef-1.jpeg');
+const chef_2 = require('../assets/images/chef-2.png');
+const chef_3 = require('../assets/images/chef-3.jpeg');
+const chef_4 = require('../assets/images/chef-4.jpeg');
+
+const chef_5 = require('../assets/images/chef-5.jpeg');
+
+const chef_6 = require('../assets/images/chef-6.jpeg');
+
+const chef_7 = require('../assets/images/chef-7.jpeg');
+
+const chef_8 = require('../assets/images/chef-8.jpeg');
+
+const chef_9 = require('../assets/images/chef-2.png');
+
+const chef_10 = require('../assets/images/chef-5.jpeg');
+
+const clock = require('../assets/images/clock.png');
+const emoji = require('../assets/images/emoji.png');
+
 const baked_fries = require('../assets/images/baked-fries.jpg');
 const burger_restaurant_1 = require('../assets/images/burger-restaurant.jpg');
 const burger_restaurant_2 = require('../assets/images/burger-restaurant-2.jpg');
@@ -34,6 +55,19 @@ export default {
   avatar_3,
   avatar_4,
   avatar_5,
+  avatar_6,
+  chef_1,
+  chef_2,
+  chef_3,
+  chef_4,
+  chef_5,
+  chef_6,
+  chef_7,
+  chef_8,
+  chef_9,
+  chef_10,
+  clock,
+  emoji,
   baked_fries,
   burger_restaurant_1,
   burger_restaurant_2,

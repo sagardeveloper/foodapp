@@ -1,22 +1,25 @@
 import React from 'react';
-import { 
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Image,
-  Text
-} from 'react-native';
-import { AppStyles } from '../../AppStyles';
-import { COLORS, FONTS, icons, SIZES } from '../../constants';
-import { affordable, expensive, fairPrice } from '../../dummy-data';
-import { CurrentLocation, Restaurant } from '../../types';
+import {StyleSheet, TouchableOpacity, View, Image, Text} from 'react-native';
+import {AppStyles} from '../../AppStyles';
+import {affordable, expensive, fairPrice} from '../../dummy-data';
+import {Restaurant} from '../../types';
+import {unLikeIcon, likeIcon} from '../../assets/assets';
+import Scale from '../../constants/Scale';
+import {COLORS, FONTS, icons, SIZES} from '../../constants';
 
 type HomeRestaurantItemProps = {
   item: Restaurant;
   onPress: (item: Restaurant) => void;
+  index: Restaurant;
+  navigate: (item: Restaurant) => void;
 };
 
-export const HomeRestaurantItem = ({ item, onPress }: HomeRestaurantItemProps) => {
+export const HomeRestaurantItem = ({
+  item,
+  onPress,
+  index,
+  navigate,
+}: HomeRestaurantItemProps) => {
   return (
     <TouchableOpacity style={styles.container} onPress={() => onPress(item)}>
       <View style={styles.itemWrapper}>
@@ -25,28 +28,37 @@ export const HomeRestaurantItem = ({ item, onPress }: HomeRestaurantItemProps) =
           resizeMode="cover"
           style={styles.itemImage}
         />
-        {/* Restaurant average delivery duration */}
+        <TouchableOpacity
+          onPress={() => navigate(item)}
+          style={styles.userImageViewStyle}>
+          <Image
+            source={item?.chefDetail?.avatar}
+            resizeMode="cover"
+            style={{width: 60, height: 60, borderRadius: 60}}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.likeLabelStyle}>
+          <Image
+            source={item.isLiked ? likeIcon : unLikeIcon}
+            resizeMode="cover"
+            style={styles.likeLogoStyle}
+          />
+        </TouchableOpacity>
         <View style={styles.itemLabel}>
           <Text style={{...FONTS.h4}}>{item.duration}</Text>
         </View>
       </View>
-      {/* Restaurant name */}
       <Text style={{...FONTS.body2, fontWeight: '700'}}>{item.name}</Text>
-      {/* Restaurant rating */}
       <View style={styles.itemRatingContainer}>
-        {/* Rating */}
         <Image source={icons.star} style={styles.itemRatingImage} />
         <Text style={styles.itemRatingText}>{item.rating}</Text>
-        {/* Restaurant categories */}
         <View style={styles.itemCategoriesContainer}>
-          {/* Categories */}
           {item.categoryNames?.map((category, index) => (
             <View style={styles.itemCategory} key={item.categories[index]}>
               <Text style={{...FONTS.body3}}>{category}</Text>
               <Text style={styles.categorySeparator}>{'\u25cf'}</Text>
             </View>
           ))}
-          {/* Price */}
           {[affordable, fairPrice, expensive].map(
             (priceRating: number, index: number) => (
               <Text
@@ -74,23 +86,54 @@ const styles = StyleSheet.create({
   },
   itemWrapper: {
     marginBottom: SIZES.padding,
+    height: 200,
+  },
+  likeLogoStyle: {
+    width: 40,
+    height: 40,
   },
   itemImage: {
     width: '100%',
     height: 200,
-    borderRadius: SIZES.radius,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    borderRadius: SIZES.h1 * 0.5,
   },
-  itemLabel: {
+  likeLabelStyle: {
     position: 'absolute',
-    bottom: 0,
-    height: 50,
-    width: SIZES.width * 0.3,
-    backgroundColor: COLORS.white,
-    borderTopRightRadius: SIZES.radius,
-    borderBottomLeftRadius: SIZES.radius,
+    marginRight: SIZES.h1 * 1.5,
+    height: SIZES.h1 * 2,
+    width: SIZES.width * 0.15,
     alignItems: 'center',
     justifyContent: 'center',
     ...AppStyles.shadow,
+    alignSelf: 'flex-end',
+  },
+  userImageViewStyle: {
+    position: 'absolute',
+    marginRight: SIZES.h1 * 2,
+    height: SIZES.h1 * 2,
+    width: SIZES.width * 0.15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...AppStyles.shadow,
+    alignSelf: 'flex-start',
+    borderRadius: Scale(30),
+    borderWidth: 1.5,
+    borderColor: '#fff',
+    margin: 10,
+  },
+  itemLabel: {
+    bottom: SIZES.radius * 1.7,
+    marginRight: 10,
+    height: SIZES.h1 * 1.5,
+    width: SIZES.width * 0.3,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.radius * 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...AppStyles.shadow,
+    alignSelf: 'flex-end',
   },
   itemRatingContainer: {
     marginTop: SIZES.padding,
@@ -103,7 +146,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   itemRatingText: {
-    ...FONTS.body3, 
+    ...FONTS.body3,
     marginRight: 10,
   },
   itemCategoriesContainer: {

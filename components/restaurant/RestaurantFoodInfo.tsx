@@ -1,12 +1,12 @@
 import React from 'react';
-import { Image, StyleSheet, View, Text, Animated } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { isIphoneX } from 'react-native-iphone-x-helper';
-import { AppStyles } from '../../AppStyles';
-import { COLORS, FONTS, icons, SIZES, } from '../../constants';
-import { Menu, OrderItem, Restaurant } from '../../types';
-import { RestaurantFoodQuantity } from './RestaurantFoodQuantity';
-import { RestaurantOrderSection } from './RestaurantOrderSection';
+import {Image, StyleSheet, View, Text, Animated} from 'react-native';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {isIphoneX} from 'react-native-iphone-x-helper';
+import {AppStyles} from '../../AppStyles';
+import {COLORS, FONTS, icons, SIZES} from '../../constants';
+import {Menu, OrderItem, Restaurant} from '../../types';
+import {RestaurantFoodQuantity} from './RestaurantFoodQuantity';
+import {RestaurantOrderSection} from './RestaurantOrderSection';
 
 type RestaurantFoodInfoProps = {
   restaurant: Restaurant | null;

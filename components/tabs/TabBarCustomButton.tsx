@@ -1,10 +1,13 @@
 import React from 'react';
-import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { COLORS } from '../../constants';
-import { StyleSheet } from 'react-native';
+import {BottomTabBarButtonProps} from '@react-navigation/bottom-tabs';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {COLORS} from '../../constants';
+import {StyleSheet} from 'react-native';
 
-export const TabBarCustomButton = ({ children, onPress }: BottomTabBarButtonProps) => (
+export const TabBarCustomButton = ({
+  children,
+  onPress,
+}: BottomTabBarButtonProps) => (
   <TouchableOpacity
     style={styles.customButton}
     activeOpacity={1}
